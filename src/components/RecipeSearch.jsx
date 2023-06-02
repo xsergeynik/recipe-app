@@ -60,26 +60,28 @@ function RecipeSearch() {
         <button type="submit">Найти</button>
       </form>
 
-      <ul>
-        {filteredResults.map((result) => (
-          <li key={result.id}>
-            <h3>
-              {result.title.split('').map((letter, index) => (
-                <span key={index} className={result.highlightedLetters[index]}>
-                  {letter}
-                </span>
-              ))}
-            </h3>
-            <ul>
-              {result.ingredients.map((ingredient) => (
-                <li key={ingredient}>
-																	{ingredient}
-																	</li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
+      {filteredResults.length > 0 && (
+        <ul className={filteredResults.length === 0 ? 'list_search hidden' : 'list_search'}>
+          {filteredResults.map((result) => (
+            <li key={result.id}>
+              <h3>
+                {result.title.split('').map((letter, index) => (
+                  <span key={index} className={result.highlightedLetters[index]}>
+                    {letter}
+                  </span>
+                ))}
+              </h3>
+              <ul>
+                {result.ingredients.map((ingredient) => (
+                  <li key={ingredient}>
+                    {ingredient}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
